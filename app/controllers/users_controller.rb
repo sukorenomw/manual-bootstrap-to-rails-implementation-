@@ -22,6 +22,17 @@ class UsersController < ApplicationController
   	@user = User.find_by_id(params[:id])
   end
 
+  def update
+  	@user = User.find_by_id(params[:id])
+	if @user.update(params_user)
+		flash[:notice] = "#{params[:name]} successfully updated!"
+        redirect_to action: 'index'
+	else
+		flash[:error] = "data not valid"
+		render 'edit'
+	end
+  end
+
   def destroy
   	@user = User.find_by_id(params[:id])
   	if @user.destroy
