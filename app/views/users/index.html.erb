@@ -26,8 +26,8 @@
 				<td><%= user.email %></td>
 				<td><%= user.address %></td>
 				<td>
-					<button type="button" class="btn btn-xs btn-success">Edit</button>
-					<button type="button" class="btn btn-xs btn-danger">Delete</button>
+					<%= link_to 'Edit', edit_user_path(user.id), :class => "btn btn-xs btn-success" %>
+					<%= link_to 'Delete', user_path(user.id), method: "DELETE", data: {confirm: 'Delete '+user.name+' ? '}, :class => "btn btn-xs btn-danger" %>
 				</td>
 			</tr>
 			<% end %>

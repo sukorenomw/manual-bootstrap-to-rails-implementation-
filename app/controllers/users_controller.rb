@@ -19,9 +19,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+  	@user = User.find_by_id(params[:id])
   end
 
-   private
+  def destroy
+  	@user = User.find_by_id(params[:id])
+  	if @user.destroy
+        flash[:notice] = "#{params[:name]} successfully deleted"
+        redirect_to action: 'index'
+    else
+        flash[:error] = "fails delete a records"
+        redirect_to action: 'index'
+    end
+  end
+
+  private
     def params_user
         params.require(:user).permit(:name, :email, :phone, :address)
     end
